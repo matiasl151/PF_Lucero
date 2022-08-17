@@ -1,0 +1,36 @@
+<div class="container">
+  <form [formGroup]="formularioAdd" (ngSubmit)="agregarAlumno()">
+    <h2>Agregar Alumno</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName="nombre" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido</mat-label>
+      <input
+        type="text"
+        matInput
+        autocomplete="off"
+        formControlName="apellido" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Edad</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName="edad" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName="email" />
+    </mat-form-field>
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      (click)="agregarAlumno()">
+      Agregar
+    </button>
+    <br />
+    <button type="button" mat-raised-button color="primary" (click)="goBack()">
+      Volver
+    </button>
+  </form>
+</div>

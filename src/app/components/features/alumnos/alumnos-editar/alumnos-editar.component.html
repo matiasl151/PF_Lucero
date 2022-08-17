@@ -1,0 +1,37 @@
+<div class="container">
+  <form [formGroup]="formularioEdit" (ngSubmit)="editAlumno()">
+    <h2>Editar Alumno</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName="nombre" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido</mat-label>
+      <input
+        type="text"
+        matInput
+        autocomplete="off"
+        formControlName="apellido" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Edad</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName="edad" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName="email" />
+    </mat-form-field>
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      routerLink="/main/alumnos"
+      (click)="editAlumno()">
+      Editar
+    </button>
+    <br />
+    <button mat-raised-button color="primary" routerLink="/main/alumnos">
+      Volver
+    </button>
+  </form>
+</div>

@@ -1,0 +1,38 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h1>
+          Nombre: {{ alumno.nombre | uppercase }} Apellido:
+          {{ alumno.apellido | uppercase }}
+        </h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Edad:</strong> {{ alumno.edad }}</p>
+      <p><strong>Email:</strong> {{ alumno.email }}</p>
+      <mat-card-title> Cursos inscripto:</mat-card-title>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let curso of cursosAlumno">
+            <td>{{ curso.nombre }}</td>
+            <td>{{ curso.descripcion }}</td>
+            <td>
+              <button mat-raised-button color="primary" (click)="borrarCurso()">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+    <button mat-raised-button color="primary" (click)="goBack()">Volver</button>
+  </mat-card>
+</div>

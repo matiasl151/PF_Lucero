@@ -1,0 +1,28 @@
+<div class="container">
+  <form [formGroup]="formularioEdit" (ngSubmit)="editCurso()">
+    <h2>Editar Curso</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName="nombre" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Descripcion</mat-label>
+      <textarea
+        matInput
+        autocomplete="off"
+        formControlName="descripcion"></textarea>
+    </mat-form-field>
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      routerLink="/main/cursos"
+      (click)="editCurso()">
+      Editar
+    </button>
+    <br />
+    <button mat-raised-button color="primary" routerLink="/main/cursos">
+      Volver
+    </button>
+  </form>
+</div>
