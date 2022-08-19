@@ -25,7 +25,7 @@
             <td>{{ curso.nombre }}</td>
             <td>{{ curso.descripcion }}</td>
             <td>
-              <button mat-raised-button color="primary" (click)="borrarCurso()">
+              <button mat-raised-button color="primary" (click)="borrarCurso(curso.id, alumno.id)">
                 <mat-icon>delete</mat-icon>
               </button>
             </td>

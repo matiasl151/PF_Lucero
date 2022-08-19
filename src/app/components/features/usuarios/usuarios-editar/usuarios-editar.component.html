@@ -1,1 +1,38 @@
-<p>usuarios-editar works!</p>
+<div class="container">
+  <form [formGroup]="formularioEdit" (ngSubmit)="editarUsuario()">
+    <h2>Editar Usuario</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="text" matInput autocomplete="off" formControlName="email" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Contraseña</mat-label>
+      <input
+        type="password"
+        matInput
+        autocomplete="off"
+        formControlName="password" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="role">
+        <mat-option>Seleccione un Rol</mat-option>
+        <mat-option *ngFor="let rol of roles" [value]="rol">
+          {{rol}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      (click)="editarUsuario()">
+      Editar
+    </button>
+    <br />
+    <button type="button" mat-raised-button color="primary" (click)="goBack()">
+      Volver
+    </button>
+  </form>
+</div>

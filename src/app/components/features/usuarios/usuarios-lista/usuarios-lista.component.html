@@ -1,1 +1,57 @@
-<p>usuarios-lista works!</p>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let usuario">{{ usuario.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let usuario">{{ usuario.email }}</td>
+    </ng-container>
+    <ng-container matColumnDef="rol">
+      <th mat-header-cell *matHeaderCellDef>Rol</th>
+      <td mat-cell *matCellDef="let usuario">{{ usuario.role }}</td>
+    </ng-container>
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let usuario">
+        <button
+          mat-icon-button
+          color="primary"
+          [routerLink]="['/main/usuarios/editar', usuario.id]">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="eliminarUsuario(usuario.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          [routerLink]="['/main/usuarios/detalles', usuario.id]">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+  </table>
+  <mat-paginator
+      [pageSizeOptions]="[5, 10]"
+      showFirstLastButtons
+      aria-label="Selecciona página de usuarios">
+  </mat-paginator>
+</div>
+
+<div class="container">
+  <span>
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/main/usuarios/agregar">
+      Agregar Usuario
+    </button>
+  </span>
+</div>

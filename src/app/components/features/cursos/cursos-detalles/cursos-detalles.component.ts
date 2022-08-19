@@ -18,7 +18,7 @@ export class CursosDetallesComponent implements OnInit {
   curso: Curso = {} as Curso;
   id: number = 0;
   subscription!: Subscription;
-  alumnosCurso: Alumno[] = [];
+  alumnos: Alumno[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -31,25 +31,23 @@ export class CursosDetallesComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.route.paramMap.subscribe(params => {
       this.id = Number(params.get('id'));
-      this.cursosService.getCurso(this.id).subscribe(curso => {
-        this.curso = curso;
-      });
     });
-
+    this.cursosService.getCurso(this.id).subscribe(curso => {
+      this.curso = curso;
+    });
     this.inscripcionesService.getInscripciones().subscribe(inscripciones => {
       inscripciones.forEach(inscripcion => {
-        if (inscripcion.curso.id === this.id) {
-          this.alumnosService
-            .getAlumno(inscripcion.alumno.id)
-            .subscribe(alumno => {
-              this.alumnosCurso.push(alumno);
-            });
+        if (inscripcion.curso.id == this.id) {
+          this.alumnos.push(inscripcion.alumno);
         }
       });
     });
   }
 
-  borrarAlumno(): void {}
+  borrarAlumno(id: number): void {
+    this.inscripcionesService.deleteInscripcionByAlumno(id);
+    this.alumnos = this.alumnos.filter(alumno => alumno.id != id);
+  }
 
   goBack(): void {
     this.router.navigate(['/cursos']);

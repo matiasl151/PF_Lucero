@@ -1,1 +1,16 @@
-<p>usuarios-detalles works!</p>
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h1>Detalles del usuario</h1>
+        <h2>
+          Email: {{usuario.email}}
+        </h2>
+        <h3>
+          Rol: {{usuario.role}}
+        </h3>
+      </mat-card-title>
+    </mat-card-header>
+    <button mat-raised-button color="primary" (click)="goBack()">Volver</button>
+  </mat-card>
+</div>

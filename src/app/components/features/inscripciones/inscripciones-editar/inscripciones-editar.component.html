@@ -1,1 +1,34 @@
-<p>inscripciones-editar works!</p>
+<div class="container">
+  <form [formGroup]="formularioEdit" (ngSubmit)="editarInscripcion()">
+    <h2>Editar Inscripcion</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>{{inscripcion.alumno.nombre}} {{inscripcion.alumno.apellido}}</mat-label>
+      <mat-select formControlName="alumno">
+        <mat-option>Seleccione un Alumno</mat-option>
+        <mat-option *ngFor="let alumno of alumnos" [value]="alumno">
+          {{alumno.nombre}} {{alumno.apellido}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>{{inscripcion.curso.nombre}}</mat-label>
+      <mat-select formControlName="curso">
+        <mat-option>Seleccione un Curso</mat-option>
+        <mat-option *ngFor="let curso of cursos" [value]="curso">
+          {{curso.nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      (click)="editarInscripcion()">
+      Editar
+    </button>
+    <br />
+    <button type="button" mat-raised-button color="primary" (click)="goBack()">
+      Volver
+    </button>
+  </form>
+</div>

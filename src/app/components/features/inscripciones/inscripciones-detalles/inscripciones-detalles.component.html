@@ -1,1 +1,26 @@
-<p>inscripciones-detalles works!</p>
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h1>
+          Inscripcion
+        </h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card-header>
+        <mat-card-title>
+          <h2>
+            Curso: {{inscripcion.curso.nombre}}
+          </h2>
+        </mat-card-title>
+        <mat-card-title>
+          <h2>
+            Alumno: {{inscripcion.alumno.nombre}} {{inscripcion.alumno.apellido}}
+          </h2>
+        </mat-card-title>
+      </mat-card-header>
+    </mat-card-content>
+    <button mat-raised-button color="primary" (click)="goBack()">Volver</button>
+  </mat-card>
+</div>

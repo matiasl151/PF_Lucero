@@ -13,13 +13,13 @@ export class InscripcionesService {
 
   getInscripciones(): Observable<Inscripcion[]> {
     return this.http.get<Inscripcion[]>(
-      environment.baseURL + 'api/v1/Inscripciones'
+      environment.baseURL + '/api/v1/Inscripciones'
     );
   }
 
   getInscripcion(id: number): Observable<Inscripcion> {
     return this.http.get<Inscripcion>(
-      environment.baseURL + 'api/v1/Inscripciones/' + id
+      environment.baseURL + '/api/v1/Inscripciones/' + id
     );
   }
 
@@ -43,7 +43,7 @@ export class InscripcionesService {
       return this.updateInscripcion(inscripcion);
     } else {
       return this.http.post(
-        environment.baseURL + 'api/v1/Inscripciones',
+        environment.baseURL + '/api/v1/Inscripciones/',
         inscripcion
       );
     }
@@ -51,20 +51,22 @@ export class InscripcionesService {
 
   updateInscripcion(inscripcion: Inscripcion): Observable<any> {
     return this.http.put(
-      environment.baseURL + 'api/v1/Inscripciones/' + inscripcion.id,
+      environment.baseURL + '/api/v1/Inscripciones/' + inscripcion.id,
       inscripcion
     );
   }
 
   deleteInscripcion(id: number): Observable<any> {
-    return this.http.delete(environment.baseURL + 'api/v1/Inscripciones/' + id);
+    return this.http.delete(
+      environment.baseURL + '/api/v1/Inscripciones/' + id
+    );
   }
 
-  deleteInscripcionByAlumno(id: number) {
-    let idInscripcion: number;
+  deleteInscripcionByAlumno(alumnoId: number) {
+    let idInscripcion!: number;
     this.getInscripciones().subscribe(inscripciones => {
       inscripciones.forEach(inscripcion => {
-        if (inscripcion.alumno.id === id) {
+        if (inscripcion.alumno.id === alumnoId) {
           idInscripcion = inscripcion.id;
           this.deleteInscripcion(idInscripcion).subscribe(res => {
             console.log(res);
@@ -74,15 +76,20 @@ export class InscripcionesService {
     });
   }
 
-  deleteInscripcionByCurso(id: number) {
-    let idInscripcion: number;
-    this.getInscripciones().subscribe(inscripciones => {
-      inscripciones.forEach(inscripcion => {
-        if (inscripcion.curso.id === id) {
+  deleteInscripcionByCurso(cursoId: number, alumnoId: number) {
+    let idInscripcion!: number;
+    this.getInscripciones().subscribe(inscripcionesDB => {
+      inscripcionesDB.forEach(inscripcion => {
+        if (
+          inscripcion.curso.id === cursoId &&
+          inscripcion.alumno.id === alumnoId
+        ) {
           idInscripcion = inscripcion.id;
-          this.deleteInscripcion(idInscripcion).subscribe(res => {
-            console.log(res);
+          this.deleteInscripcion(idInscripcion).subscribe(inscripcionesDB => {
+            console.log(inscripcionesDB);
           });
+        } else {
+          console.log('No se encontro inscripcion');
         }
       });
     });

@@ -24,7 +24,7 @@ export class AlumnosDetallesComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private alumnosService: AlumnosService,
-    private cursosService: CursosService,
+    // private cursosService: CursosService,
     private inscripcionesService: InscripcionesService
   ) {}
 
@@ -38,16 +38,17 @@ export class AlumnosDetallesComponent implements OnInit, OnDestroy {
 
     this.inscripcionesService.getInscripciones().subscribe(inscripciones => {
       inscripciones.forEach(inscripcion => {
-        if (inscripcion.alumno.id === this.id) {
-          this.cursosService.getCurso(inscripcion.curso.id).subscribe(curso => {
-            this.cursosAlumno.push(curso);
-          });
+        if (inscripcion.alumno.id == this.id) {
+          this.cursosAlumno.push(inscripcion.curso);
         }
       });
     });
   }
 
-  borrarCurso(): void {}
+  borrarCurso(cursoId: number, alumnoId: number): void {
+    this.inscripcionesService.deleteInscripcionByCurso(cursoId, alumnoId);
+    this.cursosAlumno = this.cursosAlumno.filter(curso => curso.id != cursoId);
+  }
 
   goBack(): void {
     this.router.navigate(['/alumnos']);
